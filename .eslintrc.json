@@ -1,0 +1,48 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "react-native/react-native": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "react-native",
+        "react-hooks"
+    ],
+    "rules": {
+        "react-native/no-unused-styles": 2,
+        "react-native/split-platform-components": 2,
+        "react-native/no-color-literals": "warn",
+        "react-native/no-raw-text": 2,
+        "react-native/no-inline-styles": "off",
+        "comma-dangle": [
+            "off"
+        ],
+        "react/prop-types": [
+            "off"
+        ],
+        "react-hooks/rules-of-hooks": "error", // 检查 Hook 的规则
+        "react-hooks/exhaustive-deps": "warn" // 检查 effect 的依赖
+    },
+    "settings": {
+        "react": {
+            "pragma": "React",
+            "version": "detect"
+        }
+    }
+}
