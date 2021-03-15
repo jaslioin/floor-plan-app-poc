@@ -6,23 +6,34 @@ import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-nati
 import Home from './src/views/Home';
 import { Z_INDEX_CONFIG } from './src/constants';
 import { useState } from 'react';
+import TestGround from './src/views/TestGround';
+import { Button } from 'react-native-elements';
 const Tab = createBottomTabNavigator();
 const ZOOM_LEVELS=[0.5,0.75,1,1.25,1.5]
 export default function App() {  
   const [zoomLevel,setZoomLevel]=useState(0)
+  const [isButtonDisabled,setButtonDisabled]=useState(false)
   function increaseZoom(){
     if(ZOOM_LEVELS[zoomLevel+1]){
       setZoomLevel(zoomLevel+1)
     }
   }
-  function decreaseZoom(){
-    if(ZOOM_LEVELS[zoomLevel-1]){
+  function changeZoom(state){
+    if(state==0 && ZOOM_LEVELS[zoomLevel-1]){
       setZoomLevel(zoomLevel-1)
     }
+    if(state==1 && ZOOM_LEVELS[zoomLevel+1]){
+      setZoomLevel(zoomLevel+1)
+    }
+    setButtonDisabled(true)
+    setTimeout(()=>{
+      setButtonDisabled(false)
+    },200)
   }
   return (
     <View style={styles.container}>
       <Home zoomLevel={ZOOM_LEVELS[zoomLevel]}/>
+      {/* <TestGround/> */}
         {/* <NavigationContainer>
         <Tab.Navigator
 							// initialRouteName={BOTTOM_TAB_NAME.MY_PROFILE}
@@ -85,12 +96,10 @@ export default function App() {
           justifyContent:'center',
           alignItems:'center'
         }}>
-          <TouchableOpacity onPress={increaseZoom}>
-            <Text style={{fontSize:32}}>+</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={decreaseZoom}>
-            <Text style={{fontSize:32}}>-</Text>
-          </TouchableOpacity>
+          <Button onPress={()=>{changeZoom(1)}} disabled={isButtonDisabled} buttonStyle={{width:100,height:40}} type='solid' title='+'>
+          </Button>
+          <Button onPress={()=>{changeZoom(0)}} disabled={isButtonDisabled} buttonStyle={{width:100,height:40,backgroundColor:'red'}} type='solid'  title='-'>
+          </Button>
 
         </View>
         <StatusBar style="auto" />
