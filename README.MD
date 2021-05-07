@@ -1,11 +1,5 @@
-# Floor-App
+# Floor plan app POC
 
-## TODO
-- [ ] Prototype authentication
-    - login/logout
-    - session
-- [ ] CRUD
-- [ ] 'Canvas editor'
 
 ## React-Native Notes
 - MUST use `<View>` with area to wrap `<Image>`
